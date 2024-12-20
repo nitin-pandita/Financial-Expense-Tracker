@@ -23,13 +23,14 @@ const verifyToken = (req, res, next) => {
 // create an expense
 
 router.post("/", verifyToken, async (req, res) => {
-  const { title, amount, category } = req.body;
+  const { title, amount, category, budget } = req.body;
   try {
     const expense = new Expense({
       userId: req.user.id,
       title,
       amount,
       category,
+      budget,
     });
     await expense.save();
     res.status(201).json(expense);
@@ -62,7 +63,7 @@ router.get("/:id", verifyToken, async (req, res) => {
 // updating the expense
 
 router.put("/:id", verifyToken, async (req, res) => {
-  const { title, amount, category } = req.body;
+  const { title, amount, category, budget } = req.body;
   try {
     const updateExpense = await Expense.findByIdAndUpdate(
       req.params.id,
@@ -70,6 +71,7 @@ router.put("/:id", verifyToken, async (req, res) => {
         title,
         amount,
         category,
+        budget,
       },
       { new: true }
     );

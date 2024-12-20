@@ -47,25 +47,88 @@ const ExpenseCharts = ({ expenses }) => {
 
   const barOptions = {
     responsive: true,
+    maintainAspectRatio: false, // Allow better control of height
     plugins: {
       legend: {
         position: "top",
+        labels: {
+          font: {
+            size: 14, // Adjust legend font size
+          },
+        },
       },
       title: {
         display: true,
         text: "Expenses Bar Chart",
+        font: {
+          size: 18, // Chart title font size
+        },
+      },
+    },
+    scales: {
+      x: {
+        ticks: {
+          font: {
+            size: 12,
+          },
+        },
+      },
+      y: {
+        ticks: {
+          font: {
+            size: 12,
+          },
+        },
+      },
+    },
+    elements: {
+      bar: {
+        borderWidth: 2,
+        barThickness: 50, // Increase bar thickness
       },
     },
   };
 
   return (
-    <div>
-      <h2>Expense Analytics</h2>
-      <div style={{ width: "50%", margin: "0 auto" }}>
-        <Bar data={chartData} options={barOptions} />
+    <div className="w-full bg-gray-50 p-6 rounded-lg shadow-lg">
+      <h2 className="text-3xl font-bold text-gray-700 mb-5">
+        Expense Analytics
+      </h2>
+      <div className="flex justify-center">
+        <div className="w-full lg:w-3/4" style={{ height: "400px" }}>
+          <Bar data={chartData} options={barOptions} />
+        </div>
       </div>
-      <div style={{ width: "50%", margin: "20px auto" }}>
-        <Pie data={chartData} />
+      <div className="flex justify-center mt-8">
+        <div
+          className="w-full lg:w-3/4"
+          style={{ height: "400px", maxWidth: "500px" }} // Adjust size and limit width
+        >
+          <Pie
+            data={chartData}
+            options={{
+              responsive: true,
+              maintainAspectRatio: false, // Allow better control of height
+              plugins: {
+                legend: {
+                  position: "top",
+                  labels: {
+                    font: {
+                      size: 14, // Adjust font size for legend
+                    },
+                  },
+                },
+                title: {
+                  display: true,
+                  text: "Expenses Pie Chart",
+                  font: {
+                    size: 18, // Adjust title font size
+                  },
+                },
+              },
+            }}
+          />
+        </div>
       </div>
     </div>
   );

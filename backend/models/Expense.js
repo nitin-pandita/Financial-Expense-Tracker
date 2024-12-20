@@ -21,6 +21,10 @@ const expenseSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  budget: {
+    type: Number,
+    default: 0,
+  },
 });
 
 module.exports = mongoose.model("Expense", expenseSchema);

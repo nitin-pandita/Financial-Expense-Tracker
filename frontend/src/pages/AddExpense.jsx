@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import axios from "axios";
-
+import React, { useState } from "react";
 const AddExpense = ({ expense, setExpense }) => {
   const [formData, setFormData] = useState({
     title: "",
@@ -52,14 +51,18 @@ const AddExpense = ({ expense, setExpense }) => {
 
   return (
     <div>
-      <h2>Add Expense</h2>
-      <form onSubmit={handleSubmit}>
+      <h2 className="text-2xl font-bold text-gray-700 mb-4">Add Expense</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 bg-gray-50 p-6 rounded-lg shadow-lg"
+      >
         <input
           type="text"
           name="title"
           placeholder="Title"
           onChange={handleChange}
           required
+          className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
           type="number"
@@ -67,6 +70,7 @@ const AddExpense = ({ expense, setExpense }) => {
           placeholder="Amount"
           onChange={handleChange}
           required
+          className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
         <input
           type="text"
@@ -74,10 +78,16 @@ const AddExpense = ({ expense, setExpense }) => {
           placeholder="Category"
           onChange={handleChange}
           required
+          className="border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
-        <button type="submit">Add Expense</button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600"
+        >
+          Add Expense
+        </button>
       </form>
-      {message && <p>{message}</p>}
+      {message && <p className="mt-4 text-center text-green-600">{message}</p>}
     </div>
   );
 };
